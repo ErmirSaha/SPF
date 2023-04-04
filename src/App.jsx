@@ -12,7 +12,7 @@ function App() {
       />
       <Marker position={[51.505, -0.09]}>
         <Popup>
-          A pretty CSS3 popup.
+          A pretty CSS6 popup.
           {' '}
           <br />
           {' '}
