@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import {
-  MapContainer, TileLayer,
+  TileLayer, MapContainer,
 } from 'react-leaflet';
-import LocationMarker from './LocationMarker';
+import ClickLayer from './ClickLayer';
 
-function Map() {
+function BaseMap() {
   useEffect(() => {
   }, []);
 
@@ -18,14 +18,13 @@ function Map() {
       zoom={13}
       scrollWheelZoom={false}
     >
-
+      <ClickLayer />
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <LocationMarker />
     </MapContainer>
   );
 }
 
-export default Map;
+export default BaseMap;

@@ -1,9 +1,9 @@
 import React from 'react';
-import Map from './components/Map';
+import BaseMap from './components/BaseMap';
 
 function App() {
   return (
-    <Map />
+    <BaseMap />
   );
 }
 
