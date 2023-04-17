@@ -4,11 +4,9 @@ const express = require('express');
 const app = express();
 app.use(express.static('build'));
 
-/* app.get('/', (req, res) => {
-  res.send('hello');
+app.get('/api/shortest-path-calculation', (req, res) => {
+  res.send(req.body);
 });
-*/
-// Dijkstra tänne
 
 const { PORT } = process.env;
 app.listen(PORT, () => {
