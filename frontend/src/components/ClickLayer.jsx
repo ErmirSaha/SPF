@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Marker, useMapEvents,
+  Marker, useMapEvents, Tooltip,
 } from 'react-leaflet';
 
 function ClickLayer({ markers, handleNewMarker }) {
@@ -9,9 +9,18 @@ function ClickLayer({ markers, handleNewMarker }) {
       handleNewMarker(e.latlng);
     },
   });
+  const renderTooltip = (index) => {
+    if (index === 0) return (<Tooltip direction="right" offset={[0, 0]} opacity={1} permanent>Start</Tooltip>);
+    if (index === markers.length - 1) return null;
+    return (<Tooltip direction="right" offset={[0, 0]} opacity={1} permanent>{index + 1}</Tooltip>);
+  };
   return (
     <>
-      {markers.map((marker) => (<Marker key={marker} position={marker} />))}
+      {markers.map((marker, index) => (
+        <Marker key={marker.id} position={marker}>
+          {renderTooltip(index)}
+        </Marker>
+      ))}
     </>
 
   );
