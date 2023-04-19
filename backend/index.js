@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 require('dotenv').config();
 const express = require('express');
 const helpers = require('./src/helpers/helpers');
@@ -24,3 +25,5 @@ const { PORT } = process.env;
 app.listen(PORT, () => {
   console.log(`server running at ${PORT}`);
 });
+=======
+>>>>>>> refs/remotes/origin/main
