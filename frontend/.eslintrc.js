@@ -20,5 +20,6 @@ module.exports = {
     'no-alert': 'off',
     'react/button-has-type': 'off',
     'import/no-extraneous-dependencies': 'off',
+    'react/prop-types': 'off',
   },
 };

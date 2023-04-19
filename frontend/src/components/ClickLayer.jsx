@@ -1,22 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Marker, useMapEvents,
 } from 'react-leaflet';
 
-function ClickLayer() {
-  const [markers, setMarkers] = useState([]);
-
+function ClickLayer({ markers, handleNewMarker }) {
   useMapEvents({
     click(e) {
-      const newMarkers = markers.concat(e.latlng);
-      setMarkers(newMarkers);
+      handleNewMarker(e.latlng);
     },
-
   });
   return (
     <>
       {markers.map((marker) => (<Marker key={marker} position={marker} />))}
-
     </>
 
   );

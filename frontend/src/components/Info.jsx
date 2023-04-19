@@ -1,12 +1,14 @@
 import React from 'react';
 import '../styles/Info.css';
 
-function Info() {
+function Info(props) {
+  const { disabled, onClick } = props;
+
   return (
-    <div className="info-div">
-      <h>Shortest path finder</h>
-      <button className="calculate-button">
-        <h>CALULATE</h>
+    <div id="info-div">
+      <h3 id="title-text">Shortest path finder</h3>
+      <button disabled={disabled} type="button" id="calculate-button" onClick={onClick}>
+        <h3>CALCULATE</h3>
       </button>
     </div>
   );
