@@ -29,7 +29,6 @@ function calculateDistance(path) {
   return distance;
 }
 
-/* Dijkstra tänne */
 function TSP(locations) {
   let counter = 0;
   let shortestPath = null;
