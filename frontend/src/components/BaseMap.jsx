@@ -5,11 +5,12 @@ import {
 import ClickLayer from './ClickLayer';
 import Info from './Info';
 import routeService from '../services/route';
+import { APP_STATES } from '../constants';
 
 function BaseMap() {
   const [markers, setMarkers] = useState([]);
   const [info, setInfo] = useState(undefined);
-  const [loading, setLoading] = useState(false);
+  const [appState, setAppState] = useState(APP_STATES.ADDING_MARKERS);
 
   useEffect(() => {
   }, []);
@@ -21,9 +22,9 @@ function BaseMap() {
   };
 
   const handleRouteSubmit = async () => {
-    setLoading(true);
+    setAppState(APP_STATES.CALCULATING);
     const result = await routeService.calculateTSP(markers);
-    setLoading(false);
+    setAppState(APP_STATES.SHOWING_RESULT);
     const { path, distance, counter } = result.data;
     // eslint-disable-next-line no-return-assign, no-param-reassign
     const pathWithId = path.map((location) => ({
@@ -35,13 +36,19 @@ function BaseMap() {
     console.log(path, distance, counter);
   };
 
+  const handleRouteReset = () => {
+    setMarkers([]);
+    setAppState(APP_STATES.ADDING_MARKERS);
+  };
+
   return (
     <>
       <Info
-        disabled={markers.length < 3}
-        onClick={handleRouteSubmit}
+        markers={markers}
+        onRouteSubmit={handleRouteSubmit}
+        onRouteReset={handleRouteReset}
         info={info}
-        loading={loading}
+        appState={appState}
       />
       <MapContainer
         style={{

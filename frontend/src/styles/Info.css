@@ -21,25 +21,6 @@
   flex-direction: row;
 }
 
-
-#calculate-button {
-    transition-duration: 0.2s;
-    border: none;
-    padding: 0px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 4px;
-    background-color: #4CAF50;
-    color: white;
-
-  }
-
-  #calculate-button:hover {
-    background-color: #409643;
-  }
-
   #calculate-button:disabled {
     background-color: #b4b4b4;
   }
