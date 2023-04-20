@@ -16,6 +16,11 @@
 
 }
 
+#horizontal-div{
+  display: flex;
+  flex-direction: row;
+}
+
 
 #calculate-button {
     transition-duration: 0.2s;

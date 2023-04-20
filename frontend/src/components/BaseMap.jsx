@@ -9,6 +9,7 @@ import routeService from '../services/route';
 function BaseMap() {
   const [markers, setMarkers] = useState([]);
   const [info, setInfo] = useState(undefined);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
   }, []);
@@ -20,7 +21,9 @@ function BaseMap() {
   };
 
   const handleRouteSubmit = async () => {
+    setLoading(true);
     const result = await routeService.calculateTSP(markers);
+    setLoading(false);
     const { path, distance, counter } = result.data;
     // eslint-disable-next-line no-return-assign, no-param-reassign
     const pathWithId = path.map((location) => ({
@@ -34,7 +37,12 @@ function BaseMap() {
 
   return (
     <>
-      <Info disabled={markers.length < 3} onClick={handleRouteSubmit} info={info} />
+      <Info
+        disabled={markers.length < 3}
+        onClick={handleRouteSubmit}
+        info={info}
+        loading={loading}
+      />
       <MapContainer
         style={{
           width: '100%',
