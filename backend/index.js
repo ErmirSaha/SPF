@@ -8,7 +8,10 @@ app.use(express.json());
 
 app.post('/api/calculate-tsp', (req, res) => {
   const markers = req.body;
-
+  if (markers.length > 11) {
+    res.send({ error: 'Too many markers' });
+    return;
+  }
   const result = helpers.TSP(markers);
   res.send(result);
 });
