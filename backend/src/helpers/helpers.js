@@ -18,24 +18,12 @@ const LatLonDistance = (lat1, lon1, lat2, lon2) => {
   return d;
 };
 
-function calculateDistance(locations, path) {
+function calculateDistance(path) {
   let distance = 0;
   // eslint-disable-next-line no-plusplus
   for (let i = 0; i < path.length - 1; i++) {
-    let loc1;
-    if (i === 0) {
-      // eslint-disable-next-line prefer-destructuring
-      loc1 = locations[0];
-    } else {
-      loc1 = path[i - 1];
-    }
-    let loc2;
-    if (i === path.length - 1) {
-      // eslint-disable-next-line prefer-destructuring
-      loc2 = locations[0];
-    } else {
-      loc2 = path[i];
-    }
+    const loc1 = path[i];
+    const loc2 = path[i + 1];
     distance += LatLonDistance(loc1.lat, loc1.lng, loc2.lat, loc2.lng);
   }
   return distance;
@@ -48,7 +36,10 @@ function TSP(locations) {
   let shortestDistance = Infinity;
   const permute = (arr, m = []) => {
     if (arr.length === 0) {
-      const distance = calculateDistance(locations, m);
+      m.unshift(locations[0]);
+      m.push(locations[0]);
+
+      const distance = calculateDistance(m);
       if (distance < shortestDistance) {
         shortestDistance = distance;
         shortestPath = m;
@@ -65,8 +56,8 @@ function TSP(locations) {
     }
   };
   permute(locations.slice(1));
-  shortestPath.unshift(locations[0]);
-  shortestPath.push(locations[0]);
+  // shortestPath.unshift(locations[0]);
+  // shortestPath.push(locations[0]);
   return {
     path: shortestPath,
     distance: shortestDistance,

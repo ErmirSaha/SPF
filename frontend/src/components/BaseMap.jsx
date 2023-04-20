@@ -33,14 +33,12 @@ function BaseMap() {
     }));
     setMarkers(pathWithId);
     setInfo({ distance, counter });
-    console.log(path, distance, counter);
   };
 
   const handleRouteReset = () => {
     setMarkers([]);
     setAppState(APP_STATES.ADDING_MARKERS);
   };
-
   return (
     <>
       <Info

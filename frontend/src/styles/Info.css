@@ -21,11 +21,7 @@
   flex-direction: row;
 }
 
-  #calculate-button:disabled {
-    background-color: #b4b4b4;
-  }
-
-  #title-text {
+#title-text {
     font-family: Verdana, sans-serif;
     margin-left: 8px;
-  }
+}

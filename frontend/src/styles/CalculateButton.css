@@ -15,3 +15,7 @@
   #calculate-button:hover {
     background-color: #409643;
   }
+
+  #calculate-button:disabled {
+    background-color: #b4b4b4;
+  }

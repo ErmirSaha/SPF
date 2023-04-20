@@ -19,10 +19,13 @@ function Info(props) {
             <div id="horizontal-div">
               <h3 id="title-text">{`Shortest path finder: ${MAX_COUNT - markers.length} markers left`}</h3>
             </div>
-            <CalculateButton
-              disabled={markers.length < 3 || markers.length > MAX_COUNT}
-              onRouteSubmit={onRouteSubmit}
-            />
+            <div>
+              <CalculateButton
+                disabled={markers.length < 3 || markers.length > MAX_COUNT}
+                onRouteSubmit={onRouteSubmit}
+              />
+            </div>
+
           </div>
         );
 
