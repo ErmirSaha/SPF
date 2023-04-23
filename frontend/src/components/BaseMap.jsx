@@ -5,7 +5,7 @@ import {
 import ClickLayer from './ClickLayer';
 import Info from './Info';
 import routeService from '../services/route';
-import { APP_STATES } from '../constants';
+import { APP_STATES, MAX_COUNT } from '../constants';
 
 function BaseMap() {
   const [markers, setMarkers] = useState([]);
@@ -16,6 +16,8 @@ function BaseMap() {
   }, []);
 
   const handleNewMarker = (newMarker) => {
+    if (markers.length >= MAX_COUNT) return;
+    if (appState === APP_STATES.SHOWING_RESULT) return;
     const markerWithId = { ...newMarker, id: Math.floor(Math.random() * 1000000) };
     const newMarkers = markers.concat(markerWithId);
     setMarkers(newMarkers);
@@ -24,6 +26,11 @@ function BaseMap() {
   const handleRouteSubmit = async () => {
     setAppState(APP_STATES.CALCULATING);
     const result = await routeService.calculateTSP(markers);
+    if (!result) {
+      alert('Problem with calculation');
+      setAppState(APP_STATES.ADDING_MARKERS);
+      return;
+    }
     setAppState(APP_STATES.SHOWING_RESULT);
     const { path, distance, counter } = result.data;
     // eslint-disable-next-line no-return-assign, no-param-reassign

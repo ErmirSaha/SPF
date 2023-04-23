@@ -2,12 +2,10 @@ import React from 'react';
 import {
   Marker, useMapEvents, Tooltip,
 } from 'react-leaflet';
-import { MAX_COUNT } from '../constants';
 
 function ClickLayer({ markers, handleNewMarker }) {
   useMapEvents({
     click(e) {
-      if (markers.length >= MAX_COUNT) return;
       handleNewMarker(e.latlng);
     },
   });
