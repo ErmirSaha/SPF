@@ -12,7 +12,7 @@ const LatLonDistance = (lat1, lon1, lat2, lon2) => {
   const lat2InRad = toRad(lat2);
 
   const a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
-        + Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1InRad) * Math.cos(lat2InRad);
+          + Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1InRad) * Math.cos(lat2InRad);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   const d = R * c;
   return d;
@@ -64,4 +64,4 @@ function TSP(locations) {
   };
 }
 
-module.exports = { TSP };
+module.exports = TSP;
