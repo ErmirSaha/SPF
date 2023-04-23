@@ -2,7 +2,6 @@ const calculateRouter = require('express').Router();
 const TSP = require('../utils/TSP_helper');
 
 calculateRouter.post('/', (req, res) => {
-  res.setTimeout(1000);
   const markers = req.body;
   if (Object.keys(markers).length === 0) {
     res.status(400).json({ error: 'Markers missing' });

@@ -55,8 +55,6 @@ function TSP(locations) {
     }
   };
   permute(locations.slice(1));
-  // shortestPath.unshift(locations[0]);
-  // shortestPath.push(locations[0]);
   return {
     path: shortestPath,
     distance: shortestDistance,
